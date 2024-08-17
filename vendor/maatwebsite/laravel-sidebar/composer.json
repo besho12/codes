@@ -1,0 +1,54 @@
+{
+  "name": "maatwebsite/laravel-sidebar",
+  "description": "A sidebar builder for Laravel",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "sidebar",
+    "menu",
+    "acp"
+  ],
+  "authors": [
+    {
+      "name": "Maatwebsite.nl",
+      "email": "patrick@maatwebsite.nl"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "illuminate/cache": "~10.0",
+    "illuminate/container": "~10.0",
+    "illuminate/contracts": "~10.0",
+    "illuminate/support": "~10.0",
+    "illuminate/routing": "~10.0",
+    "illuminate/view": "~10.0"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.6",
+    "phpunit/phpunit": "^10.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Maatwebsite\\Sidebar\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Maatwebsite\\Sidebar\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+        "providers": [
+            "Maatwebsite\\Sidebar\\SidebarServiceProvider"
+        ]
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  }
+}

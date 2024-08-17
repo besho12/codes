@@ -12,7 +12,6 @@
 
 #Dependencies
 node_modules/
-vendor/
 
 #Assets
 public/build/

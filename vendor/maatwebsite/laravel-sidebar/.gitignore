@@ -1,0 +1,11 @@
+/vendor
+composer.phar
+composer.lock
+.DS_Store
+.php_cs.cache
+/build
+coverage
+.phpunit.result.cache
+/.idea
+build/report.junit.xml
+

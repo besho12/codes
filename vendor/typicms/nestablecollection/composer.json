@@ -1,0 +1,36 @@
+{
+    "name": "typicms/nestablecollection",
+    "description": "A Laravel Package that extends Collection to handle unlimited nested items following adjacency list model.",
+    "keywords": [
+        "Laravel",
+        "Eloquent",
+        "Collection",
+        "TypiCMS",
+        "tree",
+        "nested set",
+        "adjacency list"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Samuel De Backer",
+            "email": "sdebacker@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "~10.0",
+        "illuminate/support": "~10.0"
+    },
+    "require-dev": {
+        "illuminate/database": "~10.0",
+        "illuminate/support": "~10.0",
+        "nunomaduro/larastan": "^2.0",
+        "orchestra/testbench": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "TypiCMS\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

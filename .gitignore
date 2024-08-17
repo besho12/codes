@@ -11,7 +11,8 @@
 .env
 
 #Dependencies
-node_modules/
+# vendor/
+# node_modules/
 
 #Assets
 public/build/

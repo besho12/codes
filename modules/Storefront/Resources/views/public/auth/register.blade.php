@@ -290,7 +290,7 @@
                                     </svg>
                                 </div>
     
-                                {!! $errors->first('phone', '<span class="help-block text-red">:message</span>') !!}
+                                {!! $errors->first('grade', '<span class="help-block text-red">:message</span>') !!}
                             </div>
     
                             <div class="form-group">

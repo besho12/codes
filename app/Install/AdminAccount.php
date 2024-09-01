@@ -20,6 +20,8 @@ class AdminAccount
 
     private function createAdminUser($request)
     {
+        dd('test2');
+
         return User::create([
             'first_name' => $request['admin_first_name'],
             'last_name' => $request['admin_last_name'],

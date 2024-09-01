@@ -27,7 +27,7 @@ return [
     'create_account' => 'Create Account',
     'register' => 'Register',
     'already_have_an_account' => 'Already Have an Account?',
-    'first_name' => 'First Name',
+    'first_name' => 'First Name11',
     'last_name' => 'Last Name',
     'grade' => 'Grade',
     'confirm_password' => 'Confirm Password',

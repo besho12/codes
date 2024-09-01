@@ -29,7 +29,7 @@ return [
     'already_have_an_account' => 'هل لديك حساب بالفعل؟',
     'first_name' => 'الاسم الأول',
     'last_name' => 'اسم العائلة',
-    'grade' => 'الدرجة',
+    'grade' => 'السنة الدراسية',
     'confirm_password' => 'تأكيد كلمة المرور',
     'i_agree_to_the' => 'أوافق على',
     'privacy_policy' => 'سياسة الخصوصية',

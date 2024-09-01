@@ -52,6 +52,7 @@ class UserController
     {
         $request->merge(['password' => bcrypt($request->password)]);
 
+        dd($request->all());
         $user = User::create($request->all());
 
         $user->roles()->attach($request->roles);

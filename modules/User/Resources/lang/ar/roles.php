@@ -1,22 +1,23 @@
 <?php
 
 return [
-    'role' => 'Role',
-    'roles' => 'Roles',
+    'role' => 'الدور',
+    'roles' => 'الأدوار',
     'table' => [
-        'name' => 'Name',
+        'name' => 'الاسم',
     ],
     'tabs' => [
-        'role_information' => 'Role Information',
-        'general' => 'General',
-        'permissions' => 'Permissions',
+        'role_information' => 'معلومات الدور',
+        'general' => 'عام',
+        'permissions' => 'الأذونات',
     ],
     'permissions' => [
-        'allow_all' => 'Allow all',
-        'deny_all' => 'Deny all',
-        'inherit_all' => 'Inherit all',
-        'allow' => 'Allow',
-        'deny' => 'Deny',
-        'inherit' => 'Inherit',
+        'allow_all' => 'السماح للجميع',
+        'deny_all' => 'رفض الجميع',
+        'inherit_all' => 'وراثة الكل',
+        'allow' => 'السماح',
+        'deny' => 'الرفض',
+        'inherit' => 'الوراثة',
     ],
 ];
+

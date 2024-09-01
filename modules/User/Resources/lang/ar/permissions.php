@@ -2,15 +2,15 @@
 
 return [
     'users' => [
-        'index' => 'Index Users',
-        'create' => 'Create Users',
-        'edit' => 'Edit Users',
-        'destroy' => 'Delete Users',
+        'index' => 'عرض المستخدمين',
+        'create' => 'إنشاء مستخدمين',
+        'edit' => 'تعديل المستخدمين',
+        'destroy' => 'حذف المستخدمين',
     ],
     'roles' => [
-        'index' => 'Index Roles',
-        'create' => 'Create Roles',
-        'edit' => 'Edit Roles',
-        'destroy' => 'Delete Roles',
+        'index' => 'عرض الأدوار',
+        'create' => 'إنشاء أدوار',
+        'edit' => 'تعديل الأدوار',
+        'destroy' => 'حذف الأدوار',
     ],
 ];

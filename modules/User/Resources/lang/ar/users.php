@@ -1,27 +1,28 @@
 <?php
 
 return [
-    'user' => 'User',
-    'users' => 'Users',
-    'profile' => 'Profile',
+    'user' => 'المستخدم',
+    'users' => 'المستخدمين',
+    'profile' => 'الملف الشخصي',
     'table' => [
-        'first_name' => 'First Name',
-        'last_name' => 'Last Name',
-        'email' => 'Email',
-        'last_login' => 'Last Login',
+        'first_name' => 'الاسم الأول',
+        'last_name' => 'اسم العائلة',
+        'email' => 'البريد الإلكتروني',
+        'last_login' => 'آخر تسجيل دخول',
     ],
     'tabs' => [
         'group' => [
-            'user_information' => 'User Information',
-            'profile_information' => 'Profile Information',
+            'user_information' => 'معلومات المستخدم',
+            'profile_information' => 'معلومات الملف الشخصي',
         ],
-        'account' => 'Account',
-        'permissions' => 'Permissions',
-        'new_password' => 'New Password',
+        'account' => 'الحساب',
+        'permissions' => 'الأذونات',
+        'new_password' => 'كلمة مرور جديدة',
     ],
     'form' => [
-        'activated' => 'Activated',
+        'activated' => 'مفعل',
     ],
-    'or_reset_password' => 'or, Reset Password',
-    'send_reset_password_email' => 'Send Reset Password Email',
+    'or_reset_password' => 'أو، إعادة تعيين كلمة المرور',
+    'send_reset_password_email' => 'إرسال بريد إلكتروني لإعادة تعيين كلمة المرور',
 ];
+

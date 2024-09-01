@@ -1,11 +1,12 @@
 <?php
 
 return [
-    'welcome' => 'Welcome :name!',
-    'account_created' => 'Your account has been created successfully.',
-    'reset_your_account_password' => 'Reset your account password',
-    'received_a_password_reset_request' => 'You are receiving this email because we received a password reset request for your account.',
-    'reset_password' => 'Reset Password',
-    'no_further_action_is_required' => 'If you did not request a password reset, no further action is required.',
-    'if_you\’re_having_trouble' => 'If you’re having trouble clicking the "Reset Password" button, copy and paste the URL below into your web browser:',
+    'welcome' => 'مرحبًا :name!',
+    'account_created' => 'تم إنشاء حسابك بنجاح.',
+    'reset_your_account_password' => 'إعادة تعيين كلمة مرور حسابك',
+    'received_a_password_reset_request' => 'لقد تلقيت هذا البريد الإلكتروني لأننا تلقينا طلبًا لإعادة تعيين كلمة المرور لحسابك.',
+    'reset_password' => 'إعادة تعيين كلمة المرور',
+    'no_further_action_is_required' => 'إذا لم تطلب إعادة تعيين كلمة المرور، فلا حاجة لاتخاذ أي إجراء آخر.',
+    'if_you\’re_having_trouble' => 'إذا كنت تواجه مشكلة في النقر على زر "إعادة تعيين كلمة المرور"، انسخ والصق الرابط أدناه في متصفح الويب:',
 ];
+

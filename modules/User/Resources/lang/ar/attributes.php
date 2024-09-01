@@ -2,23 +2,24 @@
 
 return [
     'auth' => [
-        'remember_me' => 'Remember me',
+        'remember_me' => 'تذكرني',
     ],
 
     'users' => [
-        'first_name' => 'First Name',
-        'last_name' => 'Last Name',
-        'email' => 'Email',
-        'phone' => 'Phone',
-        'password' => 'Password',
-        'password_confirmation' => 'Confirm Password',
-        'roles' => 'Roles',
-        'activated' => 'Status',
-        'new_password' => 'New Password',
-        'confirm_new_password' => 'Confirm New Password',
+        'first_name' => 'الاسم الأول',
+        'last_name' => 'اسم العائلة',
+        'email' => 'البريد الإلكتروني',
+        'phone' => 'الهاتف',
+        'password' => 'كلمة المرور',
+        'password_confirmation' => 'تأكيد كلمة المرور',
+        'roles' => 'الأدوار',
+        'activated' => 'الحالة',
+        'new_password' => 'كلمة المرور الجديدة',
+        'confirm_new_password' => 'تأكيد كلمة المرور الجديدة',
     ],
 
     'roles' => [
-        'name' => 'Name',
+        'name' => 'الاسم',
     ],
 ];
+

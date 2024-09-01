@@ -277,7 +277,7 @@
                                     class="input-group" 
                                 >
 
-                                    <select class="form-control" value="{{ old('grade')}}">
+                                    <select name="grade" class="form-control" value="{{ old('grade')}}">
                                         <option selected value="">Please Select</option>
                                         <option value="1">الصف الاول الثانوي</option>
                                         <option value="2">الصف الثاني الثانوي</option>

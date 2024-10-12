@@ -47,6 +47,7 @@ class SettingTabs extends Tabs
             ->add($this->flatRate());
 
         $this->group('payment_methods', trans('setting::settings.tabs.group.payment_methods'))
+            ->add($this->paymob())
             ->add($this->paypal())
             ->add($this->stripe())
             ->add($this->paytm())
@@ -344,6 +345,17 @@ class SettingTabs extends Tabs
             $tab->fields(['paypal_enabled', 'translatable.paypal_label', 'translatable.paypal_description', 'paypal_env', 'paypal_client_id', 'paypal_secret']);
 
             $tab->view('setting::admin.settings.tabs.paypal');
+        });
+    }
+
+    private function paymob ()
+    {
+        return tap(new Tab('paymob', trans('setting::settings.tabs.paymob')), function (Tab $tab) {
+            $tab->weight(61);
+
+            $tab->fields(['paymob_enabled', 'translatable.paymob_label', 'translatable.paymob_description', 'paymob_env', 'paymob_client_id', 'paymob_secret']);
+
+            $tab->view('setting::admin.settings.tabs.paymob');
         });
     }
 

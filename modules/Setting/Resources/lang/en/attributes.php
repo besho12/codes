@@ -120,6 +120,16 @@ return [
     'paytm_merchant_id' => 'Merchant ID',
     'paytm_merchant_key' => 'Merchant Key',
 
+    'paymob_enabled' => 'Status',
+    'translatable.paymob_label' => 'Label',
+    'translatable.paymob_description' => 'Description',
+    'paymob_test_mode' => 'Sandbox',
+    'paymob_api_key' => 'API Key',
+    'paymob_iframe_id' => 'Iframe Id',
+    'paymob_integration_id' => 'Integration Id',
+    'paymob_hmac' => 'Hmac',
+    'paymob_callback_url' => 'Callback Url',
+
     'razorpay_enabled' => 'Status',
     'translatable.razorpay_label' => 'Label',
     'translatable.razorpay_description' => 'Description',

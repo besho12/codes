@@ -120,6 +120,15 @@ class UpdateSettingRequest extends Request
             'paytm_merchant_id' => 'required_if:paytm_enabled,1',
             'paytm_merchant_key' => 'required_if:paytm_enabled,1',
 
+            'paymob_enabled' => 'required|boolean',
+            'translatable.paymob_label' => 'required_if:paymob_enabled,1',
+            'translatable.paymob_description' => 'required_if:paymob_enabled,1',
+            'paymob_callback_url' => 'required_if:paymob_enabled,1',
+            'paymob_api_key' => 'required_if:paymob_enabled,1',
+            'paymob_iframe_id' => 'required_if:paymob_enabled,1',
+            'paymob_integration_id' => 'required_if:paymob_enabled,1',
+            'paymob_hmac' => 'required_if:paymob_enabled,1',
+
             'razorpay_enabled' => 'required|boolean',
             'translatable.razorpay_label' => 'required_if:razorpay_enabled,1',
             'translatable.razorpay_description' => 'required_if:razorpay_enabled,1',

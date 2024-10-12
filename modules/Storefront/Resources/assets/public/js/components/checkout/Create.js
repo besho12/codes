@@ -410,6 +410,8 @@ export default {
                         window.location.href = data.redirectUrl;
                     } else if (this.form.payment_method === "paytm") {
                         this.confirmPaytmPayment(data);
+                    } else if (this.form.payment_method === "paymob") {
+                        this.confirmPaymobPayment(data);
                     } else if (this.form.payment_method === "razorpay") {
                         this.confirmRazorpayPayment(data);
                     } else if (this.form.payment_method === "paystack") {
@@ -429,15 +431,15 @@ export default {
                         );
                     }
                 })
-                .catch(({ response }) => {
-                    if (response.status === 422) {
-                        this.errors.record(response.data.errors);
-                    }
+                // .catch(({ response }) => {
+                //     if (response.status === 422) {
+                //         this.errors.record(response.data.errors);
+                //     }
 
-                    this.$notify(response.data.message);
+                //     this.$notify(response.data.message);
 
-                    this.placingOrder = false;
-                });
+                //     this.placingOrder = false;
+                // });
         },
 
         confirmOrder(orderId, paymentMethod, params = {}) {
@@ -559,6 +561,27 @@ export default {
                 .catch(() => {
                     this.deleteOrder(orderId);
                 });
+        },
+
+        confirmPaymobPayment(data) {
+            axios
+            .post(
+                route("paymob.paymob_create_order", {
+                    order_id: data['order_id'],
+                })
+            )
+            .then((data) => {
+                window.open(data['data'], '_self');
+            })
+            .catch((error) => {
+                // console.log('nooooooo');
+                // this.placingOrder = false;
+                // this.loadingOrderSummary = false;
+
+                // this.deleteOrder(data['order_id']);
+                // this.$notify(error.response.data.message);
+            });
+            
         },
 
         confirmRazorpayPayment(razorpayOrder) {

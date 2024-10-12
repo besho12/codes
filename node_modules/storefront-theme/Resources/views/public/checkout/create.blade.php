@@ -76,6 +76,16 @@
         @endif
     @endif
 
+    {{-- @if (setting('paymob_enabled'))
+        @if (setting('paymob_test_mode'))
+            <script src="https://securegw-stage.paymob.in/merchantpgpui/checkoutjs/merchants/{{ setting('paymob_merchant_id') }}.js">
+            </script>
+        @else
+            <script src="https://securegw.paymob.in/merchantpgpui/checkoutjs/merchants/{{ setting('paymob_merchant_id') }}.js">
+            </script>
+        @endif
+    @endif --}}
+
     @if (setting('razorpay_enabled'))
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     @endif

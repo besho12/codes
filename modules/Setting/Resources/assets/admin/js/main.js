@@ -44,6 +44,10 @@ $("#paypal_enabled").on("change", () => {
     $("#paypal-fields").toggleClass("hide");
 });
 
+$("#paymob_enabled").on("change", () => {
+    $("#paymob-fields").toggleClass("hide");
+});
+
 $("#stripe_enabled").on("change", () => {
     $("#stripe-fields").toggleClass("hide");
 });

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('checkout', 'CheckoutController@create')->name('checkout.create');
 Route::post('checkout', 'CheckoutController@store')->name('checkout.store');
+Route::post('paymob', 'PaymobController@paymob_create_order')->name('paymob.paymob_create_order');
+Route::post('paymobcallback', 'PaymobController@callback')->name('paymob.callback');
 
 Route::any('checkout/{orderId}/complete', 'CheckoutCompleteController@store')
     ->name('checkout.complete.store')
@@ -11,4 +13,5 @@ Route::any('checkout/{orderId}/complete', 'CheckoutCompleteController@store')
 Route::get('checkout/complete', 'CheckoutCompleteController@show')->name('checkout.complete.show');
 
 Route::get('checkout/{orderId}/payment-canceled', 'PaymentCanceledController@store')->name('checkout.payment_canceled.store');
+
 

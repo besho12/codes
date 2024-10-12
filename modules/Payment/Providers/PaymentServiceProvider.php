@@ -4,6 +4,7 @@ namespace Modules\Payment\Providers;
 
 use Modules\Payment\Gateways\COD;
 use Modules\Payment\Gateways\Paytm;
+use Modules\Payment\Gateways\Paymob;
 use Modules\Payment\Facades\Gateway;
 use Modules\Payment\Gateways\PayPal;
 use Modules\Payment\Gateways\Stripe;
@@ -36,6 +37,7 @@ class PaymentServiceProvider extends ServiceProvider
         $this->registerPayPalExpress();
         $this->registerStripe();
         $this->registerPaytm();
+        $this->registerPaymob();
         $this->registerRazorpay();
         $this->registerInstamojo();
         $this->registerAuthorizenet();
@@ -90,6 +92,13 @@ class PaymentServiceProvider extends ServiceProvider
     {
         if ($this->enabled('paytm')) {
             Gateway::register('paytm', new Paytm());
+        }
+    }
+
+    private function registerPaymob()
+    {
+        if ($this->enabled('paymob')) {
+            Gateway::register('paymob', new Paymob());
         }
     }
 

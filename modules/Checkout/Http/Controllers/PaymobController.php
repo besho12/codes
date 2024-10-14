@@ -98,6 +98,7 @@ class PaymobController extends Controller
             "country" => "N/A",
             "last_name" => 'ecladuos',
             "state" => "N/A",
+            "porta_order_id"=>$portal_order->id
         ];
 
         $data = [

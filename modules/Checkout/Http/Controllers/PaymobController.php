@@ -69,6 +69,7 @@ class PaymobController extends Controller
             "currency" => "EGP",
             "items" => $items,
             'order_id' => $order->id,
+            'portal_order_id' => $order['id'],
 
         ];
         $response = $this->cURL(

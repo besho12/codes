@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('checkout', 'CheckoutController@create')->name('checkout.create');
 Route::post('checkout', 'CheckoutController@store')->name('checkout.store');
 Route::post('paymob', 'PaymobController@paymob_create_order')->name('paymob.paymob_create_order');
-Route::post('paymobcallback', 'PaymobController@callback')->name('paymob.callback');
+Route::post('paymobcallback', 'PaymobController@callback')->name('paymob.callback')->withoutMiddleware(\FleetCart\Http\Middleware\VerifyCsrfToken::class);
 
 Route::any('checkout/{orderId}/complete', 'CheckoutCompleteController@store')
     ->name('checkout.complete.store')

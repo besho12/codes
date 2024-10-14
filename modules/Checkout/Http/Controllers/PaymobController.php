@@ -176,7 +176,7 @@ class PaymobController extends Controller
 
     function paymobcallbackresponseview(Request $request){
         $data = $request;
-        return view('storefront::public.checkout.complete.show', compact('data'));
+        return view('storefront::public.checkout.complete.paid', compact('data'));
     }
 
     public function callback(Request $request)

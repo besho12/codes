@@ -84,6 +84,7 @@ class PaymobController extends Controller
     public function getPaymentToken($order, $token, $portal_order)
     {
 
+        dd($portal_order->id, $portal_order['id'], $portal_order);
         $value = 500;
         $billingData = [
             "apartment" => "N/A",

@@ -44,7 +44,6 @@ class PaymobController extends Controller
         $order = Order::where('id', $order_id)->first();
         $token = $this->getToken();
         $paymob = $this->createOrder($token, $order);
-        // $this->update_portal_order_with_();
         $paymentToken = $this->getPaymentToken($paymob, $token, $order);        
         $url = 'https://accept.paymobsolutions.com/api/acceptance/iframes/' . $this->config_values['iframe_id'] . '?payment_token=' . $paymentToken;
         echo json_encode($url);
@@ -100,13 +99,14 @@ class PaymobController extends Controller
             "country" => "N/A",
             "last_name" => 'ecladuos',
             "state" => "N/A",
+            "porta_order_id"=>$portal_order->id
         ];
 
         $data = [
             "auth_token" => $token,
             'amount_cents' => round($portal_order->total->amount() * 100),
             "expiration" => 3600,
-            "order_id" => $portal_order['id'],
+            "order_id" => $order->id,
             "billing_data" => $billingData,
             "currency" => 'EGP',
             "integration_id" => $this->config_values['integration_id']

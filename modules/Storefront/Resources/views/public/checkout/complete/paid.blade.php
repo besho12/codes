@@ -11,7 +11,7 @@
                     </svg>
 
                     <h2>{{ trans('storefront::order_complete.order_paid') }}</h2>
-                    <span>{!! trans('storefront::order_complete.your_order_has_been_paid', ['id' => $order->id]) !!}</span>
+                    <span>{!! trans('storefront::order_complete.your_order_has_been_paid') !!}</span>
                 </div>
             </div>
         </div>

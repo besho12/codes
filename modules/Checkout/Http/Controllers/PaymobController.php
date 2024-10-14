@@ -174,10 +174,18 @@ class PaymobController extends Controller
         return json_decode($output);
     }
 
+    function paymobcallbackresponseview(Request $request){
+        $data = $request;
+        return view('storefront::public.checkout.complete.show', compact('data'));
+    }
+
     public function callback(Request $request)
     {
 
-        dd($request);
+        Order::where('id',1)->update([
+            'test_callback'=>json_encode($request->all())
+        ]);
+        // dd($request);
         // id=226078119&pending=false&amount_cents=20000&success=true&is_auth=false&is_capture=false&is_standalone_payment=true&is_voided=false&is_refunded=false&is_3d_secure=true&integration_id=4853193&profile_id=1000304&has_parent_transaction=false&order=254435924&created_at=2024-10-13T18%3A59%3A49.559861&currency=EGP&merchant_commission=0&discount_details=%5B%5D&is_void=false&is_refund=false&error_occured=false&refunded_amount_cents=0&captured_amount=0&updated_at=2024-10-13T19%3A00%3A08.297606&is_settled=false&bill_balanced=false&is_bill=false&owner=1853067&data.message=Approved&source_data.type=card&source_data.pan=2346&source_data.sub_type=MasterCard&acq_response_code=00&txn_response_code=APPROVED&hmac=b7b2a065c62a0075dec1e293fe1000b9615d7e69d91f4513272d8f05c1c380673600f8f9a42e0fde291b0b6abd93848a89ab7c19744f4b20e73064c8cbb5a054
         // $data = $request->all();
         // ksort($data);

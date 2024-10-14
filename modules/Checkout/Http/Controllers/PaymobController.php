@@ -100,14 +100,13 @@ class PaymobController extends Controller
             "country" => "N/A",
             "last_name" => 'ecladuos',
             "state" => "N/A",
-            "porta_order_id"=>$portal_order->id
         ];
 
         $data = [
             "auth_token" => $token,
             'amount_cents' => round($portal_order->total->amount() * 100),
             "expiration" => 3600,
-            "order_id" => $portal_order->id,
+            "order_id" => $portal_order['id'],
             "billing_data" => $billingData,
             "currency" => 'EGP',
             "integration_id" => $this->config_values['integration_id']

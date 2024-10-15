@@ -250,7 +250,7 @@ class PaymobController extends Controller
         if (/*$hased == $hmac && */ $data['obj']['success'] == "true") {
 
             $order->update([
-                'test_callback'=>$portal_id
+                'status'=>'completed'
             ]);
     
             // $gateway = Gateway::get('paymob');

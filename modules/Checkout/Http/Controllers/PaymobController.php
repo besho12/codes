@@ -244,45 +244,39 @@ class PaymobController extends Controller
 
         $order = Order::where('payment_order_id',$portal_id)->firstOrFail();
 
-        $order->update([
-            'test_callback'=>$portal_id
-        ]);
+        
 
 
-        // if (/*$hased == $hmac && */ $data['obj']['success'] == "true") {
+        if (/*$hased == $hmac && */ $data['obj']['success'] == "true") {
 
-           
-        //     Order::where('payment_order_id',$portal_id)->update([
-        //         'status'=>'completed'
-        //     ]);
-
-        //     $order = Order::where('payment_order_id',$portal_id)->firstOrFail();
-
+            $order->update([
+                'test_callback'=>$portal_id
+            ]);
     
-        //     // $gateway = Gateway::get('paymob');
+            // $gateway = Gateway::get('paymob');
     
-        //     try {
-        //         // $response = $gateway->complete($order);
-        //         $trans = Transaction::create([
-        //             'order_id' => $order['id'],
-        //             'transaction_id' => $data['obj']['id'],
-        //             'payment_method' => 'paymob',
-        //             'created_at' => date('Y-m-d H:i:s'),
-        //         ]);
-        //         // event(new OrderPlaced($order));
-        //     } catch (Exception $e) {    
-        //         return response()->json([
-        //             'message' => $e->getMessage(),
-        //         ], 403);
-        //     }
+            try {
+                // $response = $gateway->complete($order);
+                Transaction::create([
+                    'order_id' => $order['id'],
+                    'transaction_id' => $data['obj']['id'],
+                    'payment_method' => 'paymob',
+                    'created_at' => date('Y-m-d H:i:s'),
+                ]);
+                // event(new OrderPlaced($order));
+            } catch (Exception $e) {    
+                return response()->json([
+                    'message' => $e->getMessage(),
+                ], 403);
+            }
     
     
-        //     if (!request()->ajax()) {
-        //         return redirect()->route('checkout.complete.show');
-        //     }
+            if (!request()->ajax()) {
+                return redirect()->route('checkout.complete.show');
+            }
 
 
-        // }
+        }
         
 
     }

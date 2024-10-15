@@ -191,12 +191,12 @@ class PaymobController extends Controller
     {
 
         $data = $request->all();
-
-        Order::where('id','1')->update([
-            'test_callback'=>json_encode($data['obj']['id'])
+        
+        Order::where('payment_order_id',$data['obj']['order']['id'])->update([
+            'test_callback'=>json_encode($request->all())
         ]);
 
-        
+       
         ksort($data);
         $hmac = $data['hmac'];
 
@@ -236,7 +236,7 @@ class PaymobController extends Controller
 
         if ($hased == $hmac && $data['success'] === "true") {
 
-            $order = Order::where('payment_order_id', $data['obj']['id'])->firstOrFail();
+            $order = Order::where('payment_order_id', $data['obj']['order']['id'])->firstOrFail();
     
             $gateway = Gateway::get('paymob');
     

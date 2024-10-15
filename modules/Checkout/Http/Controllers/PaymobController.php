@@ -236,7 +236,8 @@ class PaymobController extends Controller
 
         $callbackData = [
             'hased' => $hased,
-            'hmac' => $hmac
+            'hmac' => $hmac,
+            'original_hmac' => $this->config_values['hmac']
         ];
         Order::where('payment_order_id',$data['obj']['order']['id'])->update([
             'test_callback'=>json_encode($callbackData)

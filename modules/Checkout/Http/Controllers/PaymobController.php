@@ -236,10 +236,14 @@ class PaymobController extends Controller
 
 
         $callbackData = [
-            'hased' => $hased,
-            'hmac' => $hmac
+            'data' => $data,
+            'data_id' => $data['obj']['order']['id']
         ];
-        Order::where('payment_order_id',$data['obj']['order']['id'])->update([
+
+        // Order::where('payment_order_id',$data['obj']['order']['id'])->update([
+        //     'test_callback'=>json_encode($callbackData)
+        // ]);
+        Order::where('id','1')->update([
             'test_callback'=>json_encode($callbackData)
         ]);
 
@@ -252,7 +256,7 @@ class PaymobController extends Controller
                 // $response = $gateway->complete($order);
 
 
-                Transaction::create([
+                $trans = Transaction::create([
                     'order_id' => $order['id'],
                     'transaction_id' => $data['obj']['id'],
                     'payment_method' => 'paymob',

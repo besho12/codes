@@ -51,7 +51,9 @@ class PaymobController extends Controller
     }
 
     function update_portal_order_with_paymob_order($portal_order_id, $paymob_order_id){
-        // $order = Order::where('id', $portal_order_id)->first();
+        $order = Order::where('id', $portal_order_id)->update([
+            'payment_order_id'=>$paymob_order_id
+        ]);
     }
     
 
@@ -104,10 +106,6 @@ class PaymobController extends Controller
             "country" => "N/A",
             "last_name" => 'ecladuos',
             "state" => "N/A",
-            "porta_order_id"=>$portal_order->id
-        ];
-        $extras = [
-            "ee" => $portal_order->id,
         ];
 
         $data = [
@@ -116,8 +114,6 @@ class PaymobController extends Controller
             "expiration" => 3600,
             "order_id" => $order->id,
             "billing_data" => $billingData,
-            "extras" => $extras,
-            "merchant_order_id" => $portal_order->id,
             "currency" => 'EGP',
             "integration_id" => $this->config_values['integration_id']
         ];

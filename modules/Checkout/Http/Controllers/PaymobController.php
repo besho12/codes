@@ -8,6 +8,7 @@ use Modules\Order\Entities\Order;
 use Illuminate\Routing\Controller;
 use Modules\Payment\Facades\Gateway;
 use Modules\Checkout\Events\OrderPlaced;
+use Modules\Transaction\Entities\Transaction;
 
 class PaymobController extends Controller
 {
@@ -251,10 +252,11 @@ class PaymobController extends Controller
                 $response = $gateway->complete($order);
 
 
-                $order->transaction()->create([
+                Transaction::create([
                     'order_id' => $order['id'],
                     'transaction_id' => $data['obj']['id'],
                     'payment_method' => 'paymob',
+                    'created_at' => date('Y-m-d H:i:s'),
                 ]);
     
                 event(new OrderPlaced($order));

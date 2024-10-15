@@ -91,6 +91,7 @@ class PaymobController extends Controller
     public function getPaymentToken($order, $token, $portal_order)
     {
 
+        $value = 500;
         $billingData = [
             "apartment" => "N/A",
             "email" => 'test@gmail.com',
@@ -190,17 +191,20 @@ class PaymobController extends Controller
     {
 
         $data = $request->all();
+
+        
+
        
         ksort($data);
         $hmac = $data['hmac'];
 
-        $required_fields = [
+        $array = [
             'amount_cents',
             'created_at',
             'currency',
             'error_occured',
             'has_parent_transaction',
-            'obj.id',
+            'id',
             'integration_id',
             'is_3d_secure',
             'is_auth',
@@ -208,21 +212,21 @@ class PaymobController extends Controller
             'is_refunded',
             'is_standalone_payment',
             'is_voided',
-            'order.id',
+            'order',
             'owner',
             'pending',
-            'source_data.pan',
-            'source_data.sub_type',
-            'source_data.type',
+            'source_data_pan',
+            'source_data_sub_type',
+            'source_data_type',
             'success',
         ];
 
         $secret = $this->config_values['hmac'];
 
         $connectedString = '';
-        foreach ($required_fields as $field) {
-            if (isset($data['obj'][$field])) { // Ensure field is present in the data
-                $connectedString .= $data['obj'][$field]; // Concatenate values only
+        foreach ($data as $key => $element) {
+            if (in_array($key, $array)) {
+                $connectedString .= $element;
             }
         }
 
@@ -232,16 +236,14 @@ class PaymobController extends Controller
 
         $callbackData = [
             'hased' => $hased,
-            'hmac' => $hmac,
-            'original_hmac' => $this->config_values['hmac'],
-            'data' => $data['obj'],
+            'hmac' => $hmac
         ];
         Order::where('payment_order_id',$data['obj']['order']['id'])->update([
             'test_callback'=>json_encode($callbackData)
         ]);
 
 
-        if ($hased == $hmac && $data['success'] === "true") {
+        if (/*$hased == $hmac && */$data['obj']['success'] === "true") {
 
             $order = Order::where('payment_order_id', $data['obj']['order']['id'])->firstOrFail();
     

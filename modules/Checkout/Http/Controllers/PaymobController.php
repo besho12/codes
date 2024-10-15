@@ -106,6 +106,9 @@ class PaymobController extends Controller
             "state" => "N/A",
             "porta_order_id"=>$portal_order->id
         ];
+        $extras = [
+            "ee" => $portal_order->id,
+        ];
 
         $data = [
             "auth_token" => $token,
@@ -113,6 +116,7 @@ class PaymobController extends Controller
             "expiration" => 3600,
             "order_id" => $order->id,
             "billing_data" => $billingData,
+            "extras" => $extras,
             "merchant_order_id" => $portal_order->id,
             "currency" => 'EGP',
             "integration_id" => $this->config_values['integration_id']

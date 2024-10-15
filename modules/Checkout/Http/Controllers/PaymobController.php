@@ -263,7 +263,9 @@ class PaymobController extends Controller
                     'payment_method' => 'paymob',
                     'created_at' => date('Y-m-d H:i:s'),
                 ]);
-                // event(new OrderPlaced($order));
+                
+                event(new OrderPlaced($order));
+
             } catch (Exception $e) {    
                 return response()->json([
                     'message' => $e->getMessage(),

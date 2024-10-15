@@ -249,7 +249,7 @@ class PaymobController extends Controller
             $order = Order::where('payment_order_id', $data['obj']['order']['id'])->firstOrFail();
             $gateway = Gateway::get('paymob');
             try {
-                $response = $gateway->complete($order);
+                // $response = $gateway->complete($order);
 
 
                 Transaction::create([

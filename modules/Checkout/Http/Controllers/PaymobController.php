@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Modules\Payment\Facades\Gateway;
 use Modules\Checkout\Events\OrderPlaced;
 use Modules\Transaction\Entities\Transaction;
+use Modules\Cart\Facades\Cart;
 
 class PaymobController extends Controller
 {
@@ -248,10 +249,6 @@ class PaymobController extends Controller
 
 
         if (/*$hased == $hmac && */ $data['obj']['success'] == "true") {
-
-            $order->update([
-                'status'=>'completed'
-            ]);
     
             // $gateway = Gateway::get('paymob');
     
@@ -263,6 +260,8 @@ class PaymobController extends Controller
                     'payment_method' => 'paymob',
                     'created_at' => date('Y-m-d H:i:s'),
                 ]);
+
+                Cart::clearCartConditions();
                 
                 event(new OrderPlaced($order));
 

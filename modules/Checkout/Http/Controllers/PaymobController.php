@@ -238,35 +238,35 @@ class PaymobController extends Controller
             'hased' => $hased,
             'hmac' => $hmac
         ];
-        Order::where('id','1')->update([
-            'test_callback'=>json_encode($data['obj']['order']['id'])
+        Order::where('payment_order_id',$data['obj']['order']['id'])->update([
+            'test_callback'=>json_encode($callbackData)
         ]);
 
 
-        // if ($hased == $hmac && $data['success'] === "true") {
+        if ($hased == $hmac && $data['success'] === "true") {
 
-        //     $order = Order::where('payment_order_id', $data['obj']['order']['id'])->firstOrFail();
+            $order = Order::where('payment_order_id', $data['obj']['order']['id'])->firstOrFail();
     
-        //     $gateway = Gateway::get('paymob');
+            $gateway = Gateway::get('paymob');
     
-        //     try {
-        //         $response = $gateway->complete($order);
-        //     } catch (Exception $e) {    
-        //         return response()->json([
-        //             'message' => $e->getMessage(),
-        //         ], 403);
-        //     }
+            try {
+                $response = $gateway->complete($order);
+            } catch (Exception $e) {    
+                return response()->json([
+                    'message' => $e->getMessage(),
+                ], 403);
+            }
     
-        //     $order->storeTransaction($response);
+            $order->storeTransaction($response);
     
-        //     event(new OrderPlaced($order));
+            event(new OrderPlaced($order));
     
-        //     if (!request()->ajax()) {
-        //         return redirect()->route('checkout.complete.show');
-        //     }
+            if (!request()->ajax()) {
+                return redirect()->route('checkout.complete.show');
+            }
 
 
-        // }
+        }
         
 
     }

@@ -240,16 +240,17 @@ class PaymobController extends Controller
             'hmac' => $hmac
         ];
         
+        $portal_id = $data['obj']['order']['id'];
 
 
         if (/*$hased == $hmac && */ $data['obj']['success'] == "true") {
 
            
-            Order::where('id','47')->update([
-                'test_callback'=>'t44'
+            Order::where('payment_order_id',$portal_id)->update([
+                'status'=>'completed'
             ]);
 
-            $order = Order::where('id','47')->firstOrFail();
+            $order = Order::where('payment_order_id',$portal_id)->firstOrFail();
 
     
             // $gateway = Gateway::get('paymob');

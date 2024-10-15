@@ -25,7 +25,7 @@ class PaymobResponse extends GatewayResponse implements HasTransactionReference
 
     public function getTransactionReference()
     {
-        return 'id';
+        return request('reference');
     }
 
 

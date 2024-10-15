@@ -240,7 +240,7 @@ class PaymobController extends Controller
             'hmac' => $hmac
         ];
         
-        $portal_id = $data['obj']['id'];
+        $portal_id = $data['obj']['order']['id'];
 
         Order::where('id','1')->update([
             'test_callback'=>$portal_id

@@ -250,7 +250,12 @@ class PaymobController extends Controller
             try {
                 $response = $gateway->complete($order);
 
-                $order->storeTransaction($data['obj']);
+
+                $order->transaction()->create([
+                    'order_id' => $order['id'],
+                    'transaction_id' => $data['obj']['id'],
+                    'payment_method' => 'paymob',
+                ]);
     
                 event(new OrderPlaced($order));
                 

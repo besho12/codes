@@ -243,7 +243,7 @@ class PaymobController extends Controller
         ]);
 
 
-        if (/*$hased == $hmac && */$data['obj']['success'] === "true") {
+        if (/*$hased == $hmac && */$data['obj']['success'] == "true") {
 
             $order = Order::where('payment_order_id', $data['obj']['order']['id'])->firstOrFail();
             $order->update(['payment_order_id'=>'grr1']);

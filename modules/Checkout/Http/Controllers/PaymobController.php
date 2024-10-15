@@ -230,11 +230,12 @@ class PaymobController extends Controller
             }
         }
 
+        
         $hased = hash_hmac('sha512', $connectedString, $secret);
-
         Order::where('payment_order_id',$data['obj']['order']['id'])->update([
-            'test_callback'=>json_encode(['hased'=>$hased,'hmac'=>$hmac,'data'=>$data['success']])
+            'test_callback'=>json_encode($hased)
         ]);
+
 
         if ($hased == $hmac && $data['success'] === "true") {
 

@@ -240,7 +240,7 @@ class PaymobController extends Controller
             'hmac' => $hmac
         ];
         
-        $portal_id = $data['obj']['order']['id'];
+        $portal_id = $data['obj']['id'];
 
 
         if (/*$hased == $hmac && */ $data['obj']['success'] == "true") {

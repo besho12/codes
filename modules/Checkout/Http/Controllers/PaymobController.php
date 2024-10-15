@@ -242,8 +242,10 @@ class PaymobController extends Controller
         
         $portal_id = $data['obj']['order']['id'];
 
-        Order::where('id','1')->update([
-            'test_callback'=>$portal_id
+        $order = Order::where('payment_order_id',$portal_id)->firstOrFail();
+
+        $order->update([
+            'test_callback'=>'grrrr'
         ]);
 
 

@@ -246,21 +246,21 @@ class PaymobController extends Controller
         if (/*$hased == $hmac && */$data['obj']['success'] == "true") {
 
             $order = Order::where('payment_order_id', $data['obj']['order']['id'])->firstOrFail();
-            $order->update(['payment_order_id'=>'grr1']);
             $gateway = Gateway::get('paymob');
-            $order->update(['payment_order_id'=>'grr2']);
             try {
                 $response = $gateway->complete($order);
-                $order->update(['payment_order_id'=>'grr3']);
+
+                $order->storeTransaction($data['obj']);
+    
+                event(new OrderPlaced($order));
+                
             } catch (Exception $e) {    
                 return response()->json([
                     'message' => $e->getMessage(),
                 ], 403);
             }
     
-            $order->storeTransaction($response);
-    
-            event(new OrderPlaced($order));
+            
     
             if (!request()->ajax()) {
                 return redirect()->route('checkout.complete.show');

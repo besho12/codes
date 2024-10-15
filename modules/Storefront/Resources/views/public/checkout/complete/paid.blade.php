@@ -17,20 +17,4 @@
         </div>
     </section>
 
-<script>
-    store.clearCart();
-
-    if (store.cartIsEmpty()) {
-        this.crossSellProducts = [];
-    }
-
-    axios
-        .delete(route("cart.clear"))
-        .then((response) => {
-            store.updateCart(response.data);
-        })
-        .catch((error) => {
-            this.$notify(error.response.data.message);
-        });
-</script>
 @endsection

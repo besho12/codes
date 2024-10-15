@@ -106,7 +106,8 @@ class PaymobController extends Controller
             "auth_token" => $token,
             'amount_cents' => round($portal_order->total->amount() * 100),
             "expiration" => 3600,
-            "order_id" => $portal_order['id'],
+            "order_id" => $order->id,
+            "order" => $portal_order->id,
             "billing_data" => $billingData,
             "currency" => 'EGP',
             "integration_id" => $this->config_values['integration_id']

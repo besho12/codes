@@ -233,7 +233,7 @@ class PaymobController extends Controller
         
         $hased = hash_hmac('sha512', $connectedString, $secret);
         Order::where('payment_order_id',$data['obj']['order']['id'])->update([
-            'test_callback'=>json_encode($hased)
+            'test_callback'=>json_encode($hased, $hmac)
         ]);
 
 

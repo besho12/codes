@@ -194,7 +194,7 @@ class PaymobController extends Controller
         ksort($data);
         $hmac = $data['hmac'];
 
-        $array = [
+        $required_fields = [
             'amount_cents',
             'created_at',
             'currency',
@@ -208,7 +208,7 @@ class PaymobController extends Controller
             'is_refunded',
             'is_standalone_payment',
             'is_voided',
-            'order',
+            'order.id',
             'owner',
             'pending',
             'source_data.pan',
@@ -220,9 +220,9 @@ class PaymobController extends Controller
         $secret = $this->config_values['hmac'];
 
         $connectedString = '';
-        foreach ($data as $key => $element) {
-            if (in_array($key, $array)) {
-                $connectedString .= $element;
+        foreach ($required_fields as $field) {
+            if (isset($data[$field])) { // Ensure field is present in the data
+                $connectedString .= $data[$field]; // Concatenate values only
             }
         }
 
@@ -233,8 +233,7 @@ class PaymobController extends Controller
         $callbackData = [
             'hased' => $hased,
             'hmac' => $hmac,
-            'original_hmac' => $this->config_values['hmac'],
-            'data'=>$data
+            'original_hmac' => $this->config_values['hmac']
         ];
         Order::where('payment_order_id',$data['obj']['order']['id'])->update([
             'test_callback'=>json_encode($callbackData)

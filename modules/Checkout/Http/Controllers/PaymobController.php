@@ -51,7 +51,7 @@ class PaymobController extends Controller
     }
 
     function update_portal_order_with_paymob_order($portal_order_id, $paymob_order_id){
-        $order = Order::where('id', $portal_order_id)->update([
+        Order::where('id', $portal_order_id)->update([
             'payment_order_id'=>$paymob_order_id
         ]);
     }
@@ -190,75 +190,74 @@ class PaymobController extends Controller
     public function callback(Request $request)
     {
 
-        Order::where('id',1)->update([
+        $data = $request->all();
+
+        Order::where('payment_order_id',$data['obj']['id'])->update([
             'test_callback'=>json_encode($request->all())
         ]);
-        // dd($request);
-        // id=226078119&pending=false&amount_cents=20000&success=true&is_auth=false&is_capture=false&is_standalone_payment=true&is_voided=false&is_refunded=false&is_3d_secure=true&integration_id=4853193&profile_id=1000304&has_parent_transaction=false&order=254435924&created_at=2024-10-13T18%3A59%3A49.559861&currency=EGP&merchant_commission=0&discount_details=%5B%5D&is_void=false&is_refund=false&error_occured=false&refunded_amount_cents=0&captured_amount=0&updated_at=2024-10-13T19%3A00%3A08.297606&is_settled=false&bill_balanced=false&is_bill=false&owner=1853067&data.message=Approved&source_data.type=card&source_data.pan=2346&source_data.sub_type=MasterCard&acq_response_code=00&txn_response_code=APPROVED&hmac=b7b2a065c62a0075dec1e293fe1000b9615d7e69d91f4513272d8f05c1c380673600f8f9a42e0fde291b0b6abd93848a89ab7c19744f4b20e73064c8cbb5a054
-        // $data = $request->all();
-        // ksort($data);
-        // $hmac = $data['hmac'];
 
-        // $array = [
-        //     'amount_cents',
-        //     'created_at',
-        //     'currency',
-        //     'error_occured',
-        //     'has_parent_transaction',
-        //     'id',
-        //     'integration_id',
-        //     'is_3d_secure',
-        //     'is_auth',
-        //     'is_capture',
-        //     'is_refunded',
-        //     'is_standalone_payment',
-        //     'is_voided',
-        //     'order',
-        //     'owner',
-        //     'pending',
-        //     'source_data_pan',
-        //     'source_data_sub_type',
-        //     'source_data_type',
-        //     'success',
-        // ];
+        
+        ksort($data);
+        $hmac = $data['hmac'];
 
-        // $secret = $this->config_values['hmac'];
+        $array = [
+            'amount_cents',
+            'created_at',
+            'currency',
+            'error_occured',
+            'has_parent_transaction',
+            'id',
+            'integration_id',
+            'is_3d_secure',
+            'is_auth',
+            'is_capture',
+            'is_refunded',
+            'is_standalone_payment',
+            'is_voided',
+            'order',
+            'owner',
+            'pending',
+            'source_data_pan',
+            'source_data_sub_type',
+            'source_data_type',
+            'success',
+        ];
 
-        // $connectedString = '';
-        // foreach ($data as $key => $element) {
-        //     if (in_array($key, $array)) {
-        //         $connectedString .= $element;
-        //     }
-        // }
+        $secret = $this->config_values['hmac'];
 
-        // $hased = hash_hmac('sha512', $connectedString, $secret);
+        $connectedString = '';
+        foreach ($data as $key => $element) {
+            if (in_array($key, $array)) {
+                $connectedString .= $element;
+            }
+        }
 
-        // if ($hased == $hmac && $data['success'] === "true") {
+        $hased = hash_hmac('sha512', $connectedString, $secret);
 
-        //     $order = Order::findOrFail($data['order_id']);
+        if ($hased == $hmac && $data['success'] === "true") {
+
+            $order = Order::where('payment_order_id', $data['obj']['id'])->firstOrFail();
     
-        //     $gateway = Gateway::get(request('paymentMethod'));
+            $gateway = Gateway::get('paymob');
     
-        //     try {
-        //         $response = $gateway->complete($order);
-        //     } catch (Exception $e) {
-        //         $orderService->delete($order);
+            try {
+                $response = $gateway->complete($order);
+            } catch (Exception $e) {    
+                return response()->json([
+                    'message' => $e->getMessage(),
+                ], 403);
+            }
     
-        //         return response()->json([
-        //             'message' => $e->getMessage(),
-        //         ], 403);
-        //     }
+            $order->storeTransaction($response);
     
-        //     $order->storeTransaction($response);
+            event(new OrderPlaced($order));
     
-        //     event(new OrderPlaced($order));
-    
-        //     if (!request()->ajax()) {
-        //         return redirect()->route('checkout.complete.show');
-        //     }
+            if (!request()->ajax()) {
+                return redirect()->route('checkout.complete.show');
+            }
 
 
-        // }
+        }
         
 
     }

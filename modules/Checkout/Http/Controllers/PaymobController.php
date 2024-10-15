@@ -221,8 +221,8 @@ class PaymobController extends Controller
 
         $connectedString = '';
         foreach ($required_fields as $field) {
-            if (isset($data[$field])) { // Ensure field is present in the data
-                $connectedString .= $data[$field]; // Concatenate values only
+            if (isset($data['obj'][$field])) { // Ensure field is present in the data
+                $connectedString .= $data['obj'][$field]; // Concatenate values only
             }
         }
 
@@ -233,7 +233,8 @@ class PaymobController extends Controller
         $callbackData = [
             'hased' => $hased,
             'hmac' => $hmac,
-            'original_hmac' => $this->config_values['hmac']
+            'original_hmac' => $this->config_values['hmac'],
+            'data' => $data['obj'],
         ];
         Order::where('payment_order_id',$data['obj']['order']['id'])->update([
             'test_callback'=>json_encode($callbackData)

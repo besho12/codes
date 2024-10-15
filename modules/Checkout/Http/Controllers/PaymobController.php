@@ -91,7 +91,6 @@ class PaymobController extends Controller
     public function getPaymentToken($order, $token, $portal_order)
     {
 
-        $value = 500;
         $billingData = [
             "apartment" => "N/A",
             "email" => 'test@gmail.com',
@@ -191,9 +190,6 @@ class PaymobController extends Controller
     {
 
         $data = $request->all();
-
-        
-
        
         ksort($data);
         $hmac = $data['hmac'];
@@ -204,7 +200,7 @@ class PaymobController extends Controller
             'currency',
             'error_occured',
             'has_parent_transaction',
-            'id',
+            'obj.id',
             'integration_id',
             'is_3d_secure',
             'is_auth',
@@ -215,9 +211,9 @@ class PaymobController extends Controller
             'order',
             'owner',
             'pending',
-            'source_data_pan',
-            'source_data_sub_type',
-            'source_data_type',
+            'source_data.pan',
+            'source_data.sub_type',
+            'source_data.type',
             'success',
         ];
 
@@ -237,7 +233,8 @@ class PaymobController extends Controller
         $callbackData = [
             'hased' => $hased,
             'hmac' => $hmac,
-            'original_hmac' => $this->config_values['hmac']
+            'original_hmac' => $this->config_values['hmac'],
+            'data'=>$data
         ];
         Order::where('payment_order_id',$data['obj']['order']['id'])->update([
             'test_callback'=>json_encode($callbackData)

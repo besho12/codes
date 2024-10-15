@@ -192,8 +192,8 @@ class PaymobController extends Controller
 
         $data = $request->all();
 
-        Order::where('payment_order_id',$data['obj']['id'])->update([
-            'test_callback'=>json_encode($request->all())
+        Order::where('id','1')->update([
+            'test_callback'=>json_encode($data)
         ]);
 
         

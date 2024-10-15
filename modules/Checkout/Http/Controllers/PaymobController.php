@@ -44,9 +44,14 @@ class PaymobController extends Controller
         $order = Order::where('id', $order_id)->first();
         $token = $this->getToken();
         $paymob = $this->createOrder($token, $order);
+        $this->update_portal_order_with_paymob_order($order->id, $paymob->id);
         $paymentToken = $this->getPaymentToken($paymob, $token, $order);        
         $url = 'https://accept.paymobsolutions.com/api/acceptance/iframes/' . $this->config_values['iframe_id'] . '?payment_token=' . $paymentToken;
         echo json_encode($url);
+    }
+
+    function update_portal_order_with_paymob_order($portal_order_id, $paymob_order_id){
+        // $order = Order::where('id', $portal_order_id)->first();
     }
     
 
@@ -107,8 +112,8 @@ class PaymobController extends Controller
             'amount_cents' => round($portal_order->total->amount() * 100),
             "expiration" => 3600,
             "order_id" => $order->id,
-            "order" => $portal_order->id,
             "billing_data" => $billingData,
+            "merchant_order_id" => $portal_order->id,
             "currency" => 'EGP',
             "integration_id" => $this->config_values['integration_id']
         ];

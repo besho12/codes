@@ -8,6 +8,7 @@ use Modules\Order\Entities\Order;
 use Illuminate\Routing\Controller;
 use Modules\Payment\Facades\Gateway;
 use Modules\Checkout\Events\OrderPlaced;
+use Modules\Transaction\Entities\Transaction;
 
 class PaymobController extends Controller
 {
@@ -238,28 +239,36 @@ class PaymobController extends Controller
             'hased' => $hased,
             'hmac' => $hmac
         ];
-        Order::where('payment_order_id',$data['obj']['order']['id'])->update([
-            'test_callback'=>json_encode($callbackData)
-        ]);
+        
 
 
-        if ($hased == $hmac && $data['success'] === "true") {
+        if (/*$hased == $hmac && */ $data['obj']['success'] == "true") {
+
+           
+            Order::where('payment_order_id',$data['obj']['order']['id'])->update([
+                'test_callback'=>'t44'
+            ]);
 
             $order = Order::where('payment_order_id', $data['obj']['order']['id'])->firstOrFail();
+
     
-            $gateway = Gateway::get('paymob');
+            // $gateway = Gateway::get('paymob');
     
             try {
-                $response = $gateway->complete($order);
+                // $response = $gateway->complete($order);
+                $trans = Transaction::create([
+                    'order_id' => $order['id'],
+                    'transaction_id' => $data['obj']['id'],
+                    'payment_method' => 'paymob',
+                    'created_at' => date('Y-m-d H:i:s'),
+                ]);
+                // event(new OrderPlaced($order));
             } catch (Exception $e) {    
                 return response()->json([
                     'message' => $e->getMessage(),
                 ], 403);
             }
     
-            $order->storeTransaction($response);
-    
-            event(new OrderPlaced($order));
     
             if (!request()->ajax()) {
                 return redirect()->route('checkout.complete.show');

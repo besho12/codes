@@ -15,6 +15,7 @@ vendor/
 node_modules/
 
 #Assets
+public/storage/
 public/build/
 public/pwa/
 modules/*/Resources/assets/public/fonts/*

@@ -24,7 +24,6 @@ class RegisterRequest extends Request
     {
         return [
             'first_name' => ['required'],
-            'grade' => ['required'],
             'last_name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'phone' => ['required'],

@@ -30,12 +30,12 @@
                             </a>
                         </li>
 
-                        <li class="{{ request()->routeIs('account.downloads.index') ? 'active' : '' }}">
+                        {{-- <li class="{{ request()->routeIs('account.downloads.index') ? 'active' : '' }}">
                             <a href="{{ route('account.downloads.index') }}">
                                 <i class="las la-download"></i>
                                 {{ trans('storefront::account.pages.my_downloads') }}
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="{{ request()->routeIs('account.wishlist.index') ? 'active' : '' }}">
                             <a href="{{ route('account.wishlist.index') }}">

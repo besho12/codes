@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'cart' => 'عربة التسوق',
+    'my_cart' => 'عربتي',
+    '01' => '01',
+    '02' => '02',
+    '03' => '03',
+    'checkout' => 'الدفع',
+    'order_complete' => 'اكتمل الطلب',
+    'table' => [
+        'image' => 'صورة',
+        'product_name' => 'اسم المنتج',
+        'unit_price' => 'سعر الوحدة',
+        'quantity' => 'الكمية',
+        'line_total' => 'الإجمالي الفرعي',
+        'unit_price:' => 'سعر الوحدة:',
+        'quantity:' => 'الكمية:',
+        'line_total:' => 'الإجمالي الفرعي:',
+    ],
+    'enter_coupon_code' => 'أدخل رمز القسيمة',
+    'apply' => 'تطبيق',
+    'order_summary' => 'ملخص الطلب',
+    'subtotal' => 'الإجمالي الفرعي',
+    'free' => 'مجاني',
+    'coupon' => 'قسيمة',
+    'shipping_cost' => 'تكلفة الشحن',
+    'total' => 'الإجمالي',
+    'proceed_to_checkout' => 'الانتقال إلى الدفع',
+    'your_cart_is_empty' => 'عربتك فارغة',
+    'looks_like_you_haven\'t_made_any_choice_yet' => 'يبدو أنك لم تقم بأي اختيار بعد.',
+    'continue_shopping' => 'تابع التسوق',
+];
